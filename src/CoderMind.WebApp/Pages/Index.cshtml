@@ -5,41 +5,117 @@
     Layout = null;
 }
 
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CoderMind</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CoderMind.WebApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-4 card">
+                <div class="card-header text-center display-6">CODER MIND</div>
+                <main role="main" class="pb-3 mt-3">
+                    <ul class="nav nav-pills nav-justified mb-3 mt-1" id="ex1" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link bg-primary text-white" id="tab-login" href="#" role="tab"
+                               aria-controls="pills-login" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="tab-register" href="#" role="tab"
+                               aria-controls="pills-register" aria-selected="false">Register</a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="loginForm" role="tabpanel" aria-labelledby="tab-login">
+                            <form method="post" asp-page-handler="Login">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="loginName">Username</label>
+                                    <input type="text" id="loginName" class="form-control" asp-for="LoginDto.Username" />
+                                </div>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="loginPassword">Password</label>
+                                    <input type="password" id="loginPassword" class="form-control" asp-for="LoginDto.Password" />
+                                </div>
 
-    body {
-        background-color: #fff;
-    }
-</style>
+                                <!-- Submit button -->
+                                <div class="row d-flex p-2">
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="registerForm" role="tabpanel" aria-labelledby="tab-register">
+                            <form method="post" asp-page-handler="Register">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <!-- Username input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="registerUsername">Username</label>
+                                    <input type="text" id="registerUsername" class="form-control" asp-for="RegisterDto.Username" />
+                                </div>
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="registerPassword">Password</label>
+                                    <input type="password" id="registerPassword" class="form-control" asp-for="RegisterDto.Password" />
+                                </div>
+                                <div class="row d-flex p-2">
 
-<div class="row d-flex justify-content-center mt-5">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-title text-center bg-primary">Login</div>
-            <div class="card-body">
-                <form method="post">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Username" />
+                                    <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
+
+                                </div>
+                                <!-- Submit button -->
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group my-2">
-                        <input type="password" class="form-control" placeholder="Password" />
-                    </div>
-                    <div class="form-group d-inline-block mt-3">
-                        <button class="btn btn-primary btn-block" type="submit">Login</button>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <a asp-page="/Register" class="btn btn-success">Register</a>
+                </main>
+
             </div>
         </div>
     </div>
-</div>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+
+        $(document).ready(() => {
+
+            $('#tab-register').on('click', () => {
+                $('#registerForm').addClass('show active');
+                $('#tab-register').addClass('bg-primary text-white');
+
+                $('#loginForm').removeClass('show active');
+                $('#tab-login').removeClass('bg-primary text-white');
+
+            });
+
+
+            $('#tab-login').on('click', () => {
+                $('#registerForm').removeClass('show active');
+                $('#loginForm').addClass('show active');
+                $('#tab-register').removeClass('bg-primary text-white');
+                $('#tab-login').addClass('bg-primary text-white');
+
+            });
+
+
+        });
+
+
+
+    </script>
+</body>
+</html>
+
