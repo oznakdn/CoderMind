@@ -5,15 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFB40D4C-C3FD-43A5-8F42-755D0E3936B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderMind.Domain", "src\CoderMind.Domain\CoderMind.Domain.csproj", "{C47634B6-B3A7-4F2D-9F8A-99F1D1CF1FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoderMind.Domain", "src\CoderMind.Domain\CoderMind.Domain.csproj", "{C47634B6-B3A7-4F2D-9F8A-99F1D1CF1FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderMind.Persistence", "src\CoderMind.Persistence\CoderMind.Persistence.csproj", "{557F0A4B-D5BB-498B-91F4-603CA11B0A1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoderMind.Persistence", "src\CoderMind.Persistence\CoderMind.Persistence.csproj", "{557F0A4B-D5BB-498B-91F4-603CA11B0A1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderMind.Application", "src\CoderMind.Application\CoderMind.Application.csproj", "{AD934778-FD54-47A0-972C-9DA68CBA909A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoderMind.Application", "src\CoderMind.Application\CoderMind.Application.csproj", "{AD934778-FD54-47A0-972C-9DA68CBA909A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderMind.Shared", "src\CoderMind.Shared\CoderMind.Shared.csproj", "{E150F85A-530B-46E5-8CBC-AD5791037C0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoderMind.Shared", "src\CoderMind.Shared\CoderMind.Shared.csproj", "{E150F85A-530B-46E5-8CBC-AD5791037C0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoderMind.WebApp", "src\CoderMind.WebApp\CoderMind.WebApp.csproj", "{2D1C6E7A-8351-428A-90E1-52ED65492558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoderMind.WebApp", "src\CoderMind.WebApp\CoderMind.WebApp.csproj", "{2D1C6E7A-8351-428A-90E1-52ED65492558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

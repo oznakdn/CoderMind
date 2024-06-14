@@ -46,7 +46,7 @@ namespace CoderMind.WebApp.Pages
                 return Page();
             }
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/note/index");
         }
     }
 }
