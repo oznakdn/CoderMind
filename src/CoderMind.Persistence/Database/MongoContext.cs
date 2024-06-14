@@ -8,7 +8,6 @@ public class MongoContext<T> where T : class
 
     public MongoContext(MongoOptions options)
     {
-        //"mongodb://localhost:27017"
         var client = new MongoClient(options.ConnectionString);
         var database = client.GetDatabase(options.DatabaseName);
         Collection = database.GetCollection<T>(typeof(T).Name);

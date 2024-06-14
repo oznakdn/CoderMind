@@ -8,8 +8,10 @@ public static class DependencyInjections
 {
     public static void AddMongoContext(this IServiceCollection services, Action<MongoOptions> options)
     {
-        var mongoOptions = new MongoOptions();
-        options(mongoOptions);
-        services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoOptions>>().Value);
+        services.AddSingleton<MongoOptions>(sp =>
+        {
+            options.Invoke(sp.GetRequiredService<IOptions<MongoOptions>>().Value);
+            return sp.GetRequiredService<IOptions<MongoOptions>>().Value;
+        });
     }
 }
