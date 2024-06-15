@@ -16,4 +16,5 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
         var subject = Subject.CreateSubject(createSubject.TechnologyId, createSubject.Title, createSubject.Tags!.Trim().Split(','));
         await Collection.InsertOneAsync(subject, cancellationToken: cancellationToken);
     }
+
 }

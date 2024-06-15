@@ -14,17 +14,15 @@ public class Content
 
     protected Content() { }
 
-    public static bool CreateContent(string subjectId, string text, string[]? files)
+    public static Content CreateContent(string subjectId, string text, string[]? files)
     {
-        if (string.IsNullOrWhiteSpace(subjectId) || string.IsNullOrWhiteSpace(text)) return false;
-
         var content = new Content
         {
             SubjectId = subjectId,
             Text = text,
             Files = files
         };
-        return true;
+        return content;
     }
 
 }

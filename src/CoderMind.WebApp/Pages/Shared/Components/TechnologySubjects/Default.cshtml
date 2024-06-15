@@ -13,7 +13,7 @@
             <div class="accordion-body">
                 @foreach (var item2 in item.Subjects)
                 {
-                    <a href="#" class="link-primary">@item2.Title</a>
+                    <a asp-page="/note/subjectdetail" asp-route-id="@item2.SubjectId" class="link-primary">@item2.Title</a>
                     <hr />
                 }
 
