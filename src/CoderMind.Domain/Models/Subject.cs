@@ -15,10 +15,9 @@ public class Subject
 
     protected Subject() { }
 
-    public static bool CreateSubject(string technologyId, string title, string[]? tags)
+    public static Subject CreateSubject(string technologyId, string title, string[]? tags)
     {
-        if (string.IsNullOrWhiteSpace(technologyId) || string.IsNullOrWhiteSpace(title)) return false;
-
+        
         var subject = new Subject
         {
             TechnologyId = technologyId,
@@ -26,7 +25,7 @@ public class Subject
             Tags = tags,
             CreatedDate = DateTime.Now
         };
-        return true;
+        return subject;
     }
 
 }

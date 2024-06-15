@@ -12,6 +12,7 @@ public class IndexModel(ITechnologyService technologyService) : PageModel
 
     public void OnGet()
     {
+       
     }
 
     public async Task<IActionResult>OnPostCreateTechnology()
@@ -19,4 +20,5 @@ public class IndexModel(ITechnologyService technologyService) : PageModel
         await technologyService.CreateTechnologyAsync(CreateTechnology);
         return RedirectToPage("/Note/Index");
     }
+
 }

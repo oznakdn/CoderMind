@@ -28,17 +28,23 @@ public class TechnologyService : MongoContext<Technology>, ITechnologyService
 
 
         var result = new List<GetTechnologySubjectsDto>();
+        var subjectsDto = new List<Shared.Dtos.SubjectDtos.GetSubjectDto>();
+
         foreach (var technology in technologies)
         {
-            var subjects = await _subject.Find(x => x.TechnologyId == technology.Id).ToListAsync(cancellationToken);
-            result = technologies
-                .Select(x => new GetTechnologySubjectsDto(x.Id, x.Name, x.Logo, x.Description,
-                subjects.Select(y => new Shared.Dtos.SubjectDtos.GetSubjectDto(y.Id, y.Title, y.Tags, y.CreatedDate.ToString()))
-                .ToList())).ToList();
+            var subjects = await _subject
+                .Find(x => x.TechnologyId == technology.Id)
+                .ToListAsync(cancellationToken);
 
+            subjectsDto = subjects
+                .Select(x => new Shared.Dtos.SubjectDtos.GetSubjectDto(x.Id, x.Title, x.Tags, x.CreatedDate.ToString()))
+                .ToList();
+
+            result.Add(new GetTechnologySubjectsDto(technology.Id, technology.Name, technology.Logo, technology.Description, subjectsDto));
         }
 
         return result;
+
 
     }
 }

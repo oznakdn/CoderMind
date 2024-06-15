@@ -1,0 +1,27 @@
+﻿@page "/note/subject"
+@model CoderMind.WebApp.Pages.Note.SubjectModel
+
+
+<!--New Subject-->
+<div class="row d-flex mt-3">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header text-center">Add Subject</div>
+            <div class="card-body">
+                <form method="post" asp-page-handler="CreateSubject">
+                    <input type="hidden" asp-for="CreateSubject.TechnologyId"/>
+                    <div class="form-group mt-2">
+                        <input class="form-control" placeholder="Title" asp-for="CreateSubject.Title" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input class="form-control" placeholder="Tags" asp-for="CreateSubject.Tags" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-warning" type="button" id="cancelButtonTechnology">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

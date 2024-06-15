@@ -13,6 +13,6 @@ public static class DependencyInjections
         services.AddMongoContext(options);
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITechnologyService, TechnologyService>();
-
+        services.AddScoped<ISubjectService, SubjectService>();
     }
 }
