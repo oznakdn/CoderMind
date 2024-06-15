@@ -17,16 +17,14 @@ public class Technology
 
     protected Technology() { }
 
-    public static bool CreateTechnology(string name, string? logo, string? description)
+    public static Technology CreateTechnology(string name, string? logo, string? description)
     {
-        if (string.IsNullOrWhiteSpace(name)) return false;
-
         var technology = new Technology
         {
             Name = name,
             Logo = logo ?? string.Empty,
             Description = description ?? string.Empty
         };
-        return true;
+        return technology;
     }
 }

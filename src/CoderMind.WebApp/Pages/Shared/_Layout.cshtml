@@ -5,40 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CoderMind.WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CoderMind.WebApp.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <div class="wrapper d-flex align-items-stretch">
-        <nav id="sidebar" class="active">
-            <h6><a asp-page="/note/index" class="logo">Coder Mind</a></h6>
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" style="background-color: #3E64FF;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                           C#
-                        </button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body text-white bg-primary">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+<body id="body-pd">
+    <header class="header" id="header">
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">CoderMind</span> </a>
+                <div class="row d-flex mx-1">
+                    <button class="btn btn-primary btn-sm btn-block mt-2 mx-1" type="button" id="addTechnologyButton"><i class='bx bxs-add-to-queue'></i> Technology</button>
+                </div>
+                <hr class="bg-white" />
+                <div class="nav_list">
+                    <div class="accordion" id="accordionExample">
+                        @(await Component.InvokeAsync("TechnologySubjects"))
                     </div>
                 </div>
             </div>
+            <a href="#" class="nav_link text-white"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
         </nav>
-
-        <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-            </nav>
-
+    </div>
+    <!--Container Main start-->
+    <div class="row" style="margin-left:600px">
+        <div class="col">
             @RenderBody()
+
         </div>
     </div>
 

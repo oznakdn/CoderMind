@@ -1,4 +1,49 @@
 ﻿@page "/note/index"
 @model CoderMind.WebApp.Pages.Note.IndexModel
-@{
+
+
+<div class="row d-flex mt-3 d-none" id="addTechnologyForm">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header text-center">Add Technology</div>
+            <div class="card-body">
+                <form method="post" asp-page-handler="CreateTechnology">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Name" asp-for="CreateTechnology.Name" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input class="form-control" placeholder="Logo" asp-for="CreateTechnology.Logo"/>
+                    </div>
+                    <div class="form-group mt-2">
+                        <input class="form-control" placeholder="Description" asp-for="CreateTechnology.Description" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-warning" type="button" id="cancelButton">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{ 
+
+<script>
+
+    $("#addTechnologyButton").on('click', () => {
+
+        $('#addTechnologyForm').removeClass('d-none');
+    });
+
+    $('#cancelButton').on('click', () => {
+
+        $('#addTechnologyForm').addClass('d-none');
+
+    });
+
+</script>
+
 }
