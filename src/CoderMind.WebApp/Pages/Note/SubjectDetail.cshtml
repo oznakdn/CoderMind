@@ -5,7 +5,7 @@
 @if (Model.Content is not null)
 {
     <div class="row d-flex mt-3">
-        <div class="col-8">
+        <div class="col-8 offset-2">
             <div class="card">
                 <div class="card-header text-center">@Model.Content.SubjectTitle</div>
                 <div class="card-body">
@@ -32,7 +32,7 @@
                         <div class="list-group">
                             @for (int i = 0; i < Model.Content.Links.Length; i++)
                             {
-                                <a href="@Model.Content.Links[i]" class="list-group-item list-group-item-action">Link @i</a>
+                                <a href="@Model.Content.Links[i]" target="_blank" class="list-group-item list-group-item-action">Link @i</a>
                             }
                         </div>
                     }
@@ -45,7 +45,7 @@
 else
 {
     <div class="row d-flex mt-3">
-        <div class="col-8">
+        <div class="col-8 offset-2">
             <div class="card">
                 <div class="card-header text-center">Create Content</div>
                 <div class="card-body">
@@ -83,8 +83,8 @@ else
 
             tinymce.init({
                 selector: 'textarea#text',
-                width: 750,
-                height: 300,
+                width: 850,
+                height: 500,
                 plugins: [
                     'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview',
                     'anchor', 'pagebreak',
