@@ -11,7 +11,6 @@ public static class DependencyInjections
     public static void AddApplicationService(this IServiceCollection services, Action<MongoOptions> options)
     {
         services.AddMongoContext(options);
-        services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITechnologyService, TechnologyService>();
         services.AddScoped<ISubjectService, SubjectService>();
         services.AddScoped<IContentService, ContentService>();

@@ -52,21 +52,19 @@ else
     <div class="row d-flex mt-3">
         <div class="col-8 offset-2">
             <div class="card">
-                <div class="card-header text-center">Create Content</div>
+                <div class="card-header text-center">Add Content</div>
                 <div class="card-body">
                     <form method="post" asp-page-handler="CreateContent">
                         <input type="hidden" asp-for="CreateContent.SubjectId" />
                         <div class="form-group">
-                            <label class="form-label">Content</label>
                             <textarea asp-for="CreateContent.Text" id="text" class="form-control"></textarea>
                         </div>
                         <div class="form-group mt-2">
-                            <label class="form-label">Files</label>
-                            <input asp-for="CreateContent.Files" id="text" class="form-control" />
+                            <label class="form-label"></label>
+                            <input asp-for="CreateContent.Files" placeholder="FirstFile, SecondFile" id="text" class="form-control" />
                         </div>
                         <div class="form-group mt-2">
-                            <label class="form-label">Links</label>
-                            <input asp-for="CreateContent.Links" id="text" class="form-control" />
+                            <input asp-for="CreateContent.Links" id="text" placeholder="FirstLink, SecondLink" class="form-control" />
                         </div>
                         <div class="form-group mt-3">
                             <button class="btn btn-success" type="submit">Save</button>
