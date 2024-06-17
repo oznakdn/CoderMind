@@ -1,4 +1,4 @@
 ﻿namespace CoderMind.Shared.Dtos.ContentDtos;
 
-public record GetContentDto(string Id, string Text, string[]? Files);
+public record GetContentDto(string Id,string SubjectTitle, string Text, string[]? Files, string[]? Links);
 
