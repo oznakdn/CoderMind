@@ -1,0 +1,24 @@
+﻿@page "/note/technologydetail"
+@model CoderMind.WebApp.Pages.Note.TechnologyDetailModel
+
+<div class="row d-flex mt-3">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <div class="card-header text-center">
+                @Model.TechnologyDto.Name
+                <form method="post" asp-page-handler="DeleteTechnology">
+                    <input type="hidden" name="technologyId" value="@Model.TechnologyDto.Id" />
+                    <button class="btn btn-danger btn-sm mt-2"><i class='bx bx-trash'></i></button>
+                </form>
+            </div>
+            <div class="card-body row d-flex justify-content-center">
+                <div class="col">
+                    <img src="@Model.TechnologyDto.Logo" class="img-thumbnail w-50 rounded rounded-circle" />
+                </div>
+                <div class="col">
+                    <strong>@Model.TechnologyDto.Description</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CoderMind.WebApp.Pages
+namespace CoderMind.WebApp.Pages;
+
+public class IndexModel() : PageModel
 {
-    public class IndexModel() : PageModel
+
+    public void OnGet()
     {
 
-        public void OnGet()
-        {
-
-        }
-
     }
+
 }
