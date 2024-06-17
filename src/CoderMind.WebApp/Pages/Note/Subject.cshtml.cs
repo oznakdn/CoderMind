@@ -20,7 +20,7 @@ public class SubjectModel(ISubjectService subjectService) : PageModel
     public async Task<IActionResult> OnPostCreateSubject(CancellationToken cancellationToken)
     {
         await subjectService.CreateSubjectAsync(CreateSubject, cancellationToken);
-        return RedirectToPage("/Note/Index");
+        return RedirectToPage("/Index");
     }
    
 }

@@ -7,5 +7,6 @@ public interface ITechnologyService
 {
     Task<IEnumerable<GetTechnologySubjectsDto>> GetTechnologySubjectsAsync(CancellationToken cancellationToken = default);
     Task CreateTechnologyAsync(CreateTechnologyDto createTechnologyDto, CancellationToken cancellationToken = default);
+    Task DeleteTechnologyAsync(string id, CancellationToken cancellationToken = default);
 
 }

@@ -26,12 +26,12 @@ public class SubjectDetailModel(IContentService contentService, ISubjectService 
     public async Task<IActionResult> OnPostCreateContent()
     {
         await contentService.CreateContentAsync(CreateContent);
-        return RedirectToPage("/Note/Index");
+        return RedirectToPage("/Index");
     }
 
     public async Task<IActionResult>OnPostDeleteSubject(string subjectId)
     {
         await subjectService.DeleteSubjectAsync(subjectId);
-        return RedirectToPage("/Note/Index");
+        return RedirectToPage("/Index");
     }
 }

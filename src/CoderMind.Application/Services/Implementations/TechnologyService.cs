@@ -20,6 +20,12 @@ public class TechnologyService : MongoContext<Technology>, ITechnologyService
         await Collection.InsertOneAsync(technology, cancellationToken: cancellationToken);
     }
 
+    public async Task DeleteTechnologyAsync(string id, CancellationToken cancellationToken = default)
+    {
+        var filter = new FilterDefinitionBuilder<Technology>().Eq(x => x.Id, id);
+        await Collection.FindOneAndDeleteAsync(filter, cancellationToken: cancellationToken);
+    }
+
     public async Task<IEnumerable<GetTechnologySubjectsDto>> GetTechnologySubjectsAsync(CancellationToken cancellationToken = default)
     {
         var technologies = await Collection

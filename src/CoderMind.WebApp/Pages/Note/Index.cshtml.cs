@@ -18,7 +18,7 @@ public class IndexModel(ITechnologyService technologyService) : PageModel
     public async Task<IActionResult>OnPostCreateTechnology()
     {
         await technologyService.CreateTechnologyAsync(CreateTechnology);
-        return RedirectToPage("/Note/Index");
+        return RedirectToPage("/Index");
     }
 
 }
