@@ -1,4 +1,5 @@
-﻿using CoderMind.Application.Services.Interfaces;
+﻿using Amazon.Runtime.Internal.Auth;
+using CoderMind.Application.Services.Interfaces;
 using CoderMind.Domain.Models;
 using CoderMind.Persistence.Database;
 using CoderMind.Shared.Dtos.ContentDtos;
@@ -20,6 +21,12 @@ public class ContentService : MongoContext<Content>, IContentService
         await Collection.InsertOneAsync(content, cancellationToken: cancellationToken);
     }
 
+    public async Task<GetContentDto> GetContentAsync(string id, CancellationToken cancellationToken = default)
+    {
+        var content = await Collection.Find(x => x.Id == id).SingleOrDefaultAsync(cancellationToken);
+        return new GetContentDto(content.Id, content.SubjectId, content.Text, content.Files, content.Links);
+    }
+
     public async Task<GetContentDto> GetSubjectContentBySubjectIdAsync(string subjectId, CancellationToken cancellationToken = default)
     {
         var content = await Collection.Find(x => x.SubjectId == subjectId).SingleOrDefaultAsync(cancellationToken);
@@ -29,5 +36,18 @@ public class ContentService : MongoContext<Content>, IContentService
         if (content is null) return null;
 
         return new GetContentDto(content.Id, subject.Title, content.Text, content.Files, content.Links);
+    }
+
+    public async Task UpdateContentAsync(UpdateContentDto updateContentDto, CancellationToken cancellationToken = default)
+    {
+        var filterDefinition = new FilterDefinitionBuilder<Content>().Eq(x => x.Id, updateContentDto.Id);
+
+        var updateDefinition = new UpdateDefinitionBuilder<Content>()
+            .Set(x => x.Text, updateContentDto.Text)
+            .Set(x => x.Files, updateContentDto.Files is null ? null : updateContentDto.Files.Trim().Split(","))
+            .Set(x => x.Links, updateContentDto.Links is null ? null : updateContentDto.Links.Trim().Split(","));
+
+        await Collection.UpdateOneAsync(filter:filterDefinition, update:updateDefinition, cancellationToken: cancellationToken);
+
     }
 }

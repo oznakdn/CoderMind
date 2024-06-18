@@ -1,0 +1,58 @@
+﻿@page "/content/update"
+@model CoderMind.WebApp.Pages.Content.UpdateModel
+
+<div class="row d-flex mt-3">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <div class="card-header text-center">Update @ViewData["SubjectTitle"] Content</div>
+            <div class="card-body">
+                <form method="post" asp-page-handler="CreateContent">
+                    <input type="hidden" asp-for="UpdateContent.Id" />
+                    <div class="form-group">
+                        <textarea asp-for="UpdateContent.Text" id="text" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group mt-2">
+                        <input asp-for="UpdateContent.Files" placeholder="Image1, Image2" id="text" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <input asp-for="UpdateContent.Links" id="text" placeholder="Link1, Link2" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-success" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(() => {
+
+
+            tinymce.init({
+                selector: 'textarea#text',
+                width: 850,
+                height: 500,
+                plugins: [
+                    'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview',
+                    'anchor', 'pagebreak',
+                    'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code',
+                    'fullscreen', 'insertdatetime',
+                    'media', 'table', 'emoticons', 'template', 'help'
+                ],
+                toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                    'forecolor backcolor emoticons'
+            });
+
+            let contentText = $('#contentText').val();
+            $('.content-body').html(contentText);
+
+        });
+
+
+    </script>
+}
