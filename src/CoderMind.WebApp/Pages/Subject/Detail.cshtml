@@ -9,16 +9,16 @@
             <div class="card">
                 <div class="card-header text-center">
                     @Model.Content.SubjectTitle
-                    <a class="btn btn-warning btn-sm" asp-page="/Subject/Update" asp-route-id="@Model.Content.SubjectId"><i class='bx bx-edit-alt'></i></a>
+                    <a class="btn btn-warning btn-sm" asp-page="/Subject/Update" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Update" asp-route-id="@Model.Content.SubjectId"><i class='bx bx-edit-alt'></i></a>
                     <div class="row d-flex">
                         <div class="col text-start">
                             <form method="post" asp-page-handler="DeleteSubject">
                                 <input type="hidden" name="subjectId" value="@Model.SubjectId" />
-                                <button class="btn btn-danger btn-sm mt-2"><i class='bx bx-trash'></i></button>
+                                <button class="btn btn-danger btn-sm mt-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"><i class='bx bx-trash'></i></button>
                             </form>
                         </div>
                         <div class="col mt-1 text-end">
-                            <a class="btn btn-warning btn-sm" asp-page="/Content/Update" asp-route-id="@Model.Content.Id"><i class='bx bx-edit-alt'></i></a>
+                            <a class="btn btn-warning btn-sm" asp-page="/Content/Update" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Update" asp-route-id="@Model.Content.Id"><i class='bx bx-edit-alt'></i></a>
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@ else
 <div class="row d-flex mt-3">
     <div class="col-8 offset-2">
         <div class="card">
-            <div class="card-header text-center">Add @ViewData["SubjectTitle"] Content</div>
+            <div class="card-header text-center">@ViewData["SubjectTitle"]</div>
             <div class="card-body">
                 <form method="post" asp-page-handler="CreateContent">
                     <input type="hidden" asp-for="CreateContent.SubjectId" />
@@ -70,9 +70,11 @@ else
                         <textarea asp-for="CreateContent.Text" id="text" class="form-control"></textarea>
                     </div>
                     <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm">Images</label>
                         <input asp-for="CreateContent.Files" placeholder="Image1, Image2" id="text" class="form-control form-control-sm" />
                     </div>
                     <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm">Links</label>
                         <input asp-for="CreateContent.Links" id="text" placeholder="Link1, Link2" class="form-control form-control-sm" />
                     </div>
                     <div class="form-group mt-3">

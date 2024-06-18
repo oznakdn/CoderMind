@@ -6,13 +6,14 @@
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-@item.TechnologyId" aria-expanded="true" aria-controls="collapseOne">
                 <div class="header_img w-25"> <img src="@item.Logo" class="img-fluid rounded rounded-circle"></div>
+                <span>@item.Name</span>
             </button>
         </h2>
         <div id="collapseOne-@item.TechnologyId" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="btn-group mt-2 mx-2">
-                <a asp-page="/Subject/Create" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm"><i class='bx bx-add-to-queue'></i></a>
-                <a asp-page="/Technology/Detail" asp-route-technologyId="@item.TechnologyId" class="btn btn-success btn-sm"><i class='bx bx-detail'></i></a>
-                <a asp-page="/Technology/Update" asp-route-technologyId="@item.TechnologyId" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
+                <a asp-page="/Subject/Create" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="New Subject"><i class='bx bx-add-to-queue'></i></a>
+                <a asp-page="/Technology/Detail" asp-route-technologyId="@item.TechnologyId" class="btn btn-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail"><i class='bx bx-detail'></i></a>
+                <a asp-page="/Technology/Update" asp-route-technologyId="@item.TechnologyId" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Update"><i class='bx bx-edit-alt'></i></a>
 
             </div>
             <div class="accordion-body">
