@@ -9,16 +9,14 @@
             </button>
         </h2>
         <div id="collapseOne-@item.TechnologyId" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-            <a asp-page="/Note/Subject" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm btn-block mt-2 mx-2"><i class='bx bxs-add-to-queue'></i> Subject</a>
-
-            <a asp-page="/Note/TechnologyDetail" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm btn-block mt-2 mx-2"><i class='bx bxs-add-to-queue'></i> Details</a>
-
+            <div class="btn-group mt-2 mx-2">
+                <a asp-page="/Note/Subject" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm"><i class='bx bxs-add-to-queue'></i></a>
+                <a asp-page="/Note/TechnologyDetail" asp-route-technologyId="@item.TechnologyId" class="btn btn-warning btn-sm"><i class='bx bx-detail'></i></a>
+            </div>
             <div class="accordion-body">
                 @foreach (var item2 in item.Subjects)
                 {
                     <a asp-page="/note/subjectdetail" asp-route-id="@item2.SubjectId" class="link-primary">@item2.Title</a>
-                    <hr />
                 }
 
             </div>
