@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{205FECC7-D521-4A16-96E3-D7B115C3D60C}"
 	ProjectSection(SolutionItems) = preProject
 		..\codermind-video.mp4 = ..\codermind-video.mp4
+		..\Content-Creating.png = ..\Content-Creating.png
 		..\Content.png = ..\Content.png
 		..\Index.png = ..\Index.png
 	EndProjectSection
