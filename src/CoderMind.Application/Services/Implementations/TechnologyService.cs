@@ -62,4 +62,17 @@ public class TechnologyService : MongoContext<Technology>, ITechnologyService
 
 
     }
+
+    public async Task UpdateTechnologyAsync(UpdateTechnologyDto updateTechnologyDto, CancellationToken cancellationToken = default)
+    {
+        var filterDefinition = new FilterDefinitionBuilder<Technology>().Eq(x => x.Id, updateTechnologyDto.Id);
+      
+        var updateDefinition = new UpdateDefinitionBuilder<Technology>()
+            .Set(x=>x.Name, updateTechnologyDto.Name)
+            .Set(x => x.Logo, updateTechnologyDto.Logo)
+            .Set(x=>x.Description, updateTechnologyDto.Description);
+
+       await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
+
+    }
 }

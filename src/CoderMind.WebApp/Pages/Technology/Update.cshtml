@@ -1,0 +1,30 @@
+﻿@page "/technology/update"
+@model CoderMind.WebApp.Pages.Technology.UpdateModel
+
+<div class="row d-flex mt-3">
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header text-center">Update Technology</div>
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" asp-for="UpdateTechnology.Id"/>
+                    <div class="form-group">
+                        <label class="form-label col-form-label-sm text-primary">Name</label>
+                        <input class="form-control form-control-sm" asp-for="UpdateTechnology.Name" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm text-primary">Logo</label>
+                        <input class="form-control form-control-sm" asp-for="UpdateTechnology.Logo" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm text-primary">Description</label>
+                        <textarea class="form-control form-control-sm" rows="8" asp-for="UpdateTechnology.Description"></textarea>
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
