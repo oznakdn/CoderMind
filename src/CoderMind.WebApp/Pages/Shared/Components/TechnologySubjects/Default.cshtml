@@ -16,9 +16,10 @@
 
             </div>
             <div class="accordion-body">
-                @foreach (var item2 in item.Subjects)
+                @for (var i = 0; i < item.Subjects.Count; i++)
                 {
-                    <a asp-page="/note/subjectdetail" asp-route-id="@item2.SubjectId" class="link-primary">@item2.Title</a>
+                    <a asp-page="/Subject/Detail" asp-route-id="@item.Subjects[i].SubjectId" class="link-primary">@(i+1) - @(item.Subjects[i].Title)</a>
+                    <br />
                 }
 
             </div>
