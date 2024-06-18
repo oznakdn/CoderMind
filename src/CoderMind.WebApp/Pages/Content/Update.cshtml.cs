@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Content;
 
-public class UpdateModel(IContentService contentService) : PageModel
+public class UpdateModel(IContentService contentService, ISubjectService subjectService) : PageModel
 {
     [BindProperty]
     public UpdateContentDto UpdateContent { get; set; }
@@ -21,6 +21,9 @@ public class UpdateModel(IContentService contentService) : PageModel
             Files = content.Files == null ? null : string.Join(",", content.Files),
             Links = content.Links == null ? null : string.Join(" ,", content.Links)
         };
+
+        var subject = await subjectService.GetSubjectAsync(content.SubjectTitle);
+        ViewData["SubjectTitle"] = subject.Title;
 
     }
 
