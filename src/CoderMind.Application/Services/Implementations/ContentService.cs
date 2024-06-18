@@ -16,14 +16,19 @@ public class ContentService : MongoContext<Content>, IContentService
 
     public async Task CreateContentAsync(CreateContentDto createContentDto, CancellationToken cancellationToken = default)
     {
-        var content = Content.CreateContent(createContentDto.SubjectId, createContentDto.Text, createContentDto.Files?.Trim().Split(','), createContentDto.Links?.Trim().Split(','));
+        var content = Content.CreateContent(
+            createContentDto.SubjectId,
+            createContentDto.Text,
+            createContentDto.Files is null ? null : createContentDto.Files?.Trim().Split(','),
+            createContentDto.Links is null ? null : createContentDto.Links?.Trim().Split(','));
+
         await Collection.InsertOneAsync(content, cancellationToken: cancellationToken);
     }
 
     public async Task<GetContentDto> GetContentAsync(string id, CancellationToken cancellationToken = default)
     {
         var content = await Collection.Find(x => x.Id == id).SingleOrDefaultAsync(cancellationToken);
-        return new GetContentDto(content.Id,content.SubjectId,content.SubjectId, content.Text, content.Files, content.Links);
+        return new GetContentDto(content.Id, content.SubjectId, content.SubjectId, content.Text, content.Files, content.Links);
     }
 
     public async Task<GetContentDto> GetSubjectContentBySubjectIdAsync(string subjectId, CancellationToken cancellationToken = default)
@@ -34,7 +39,7 @@ public class ContentService : MongoContext<Content>, IContentService
 
         if (content is null) return null;
 
-        return new GetContentDto(content.Id,content.SubjectId, subject.Title, content.Text, content.Files, content.Links);
+        return new GetContentDto(content.Id, content.SubjectId, subject.Title, content.Text, content.Files, content.Links);
     }
 
     public async Task UpdateContentAsync(UpdateContentDto updateContentDto, CancellationToken cancellationToken = default)
@@ -46,7 +51,7 @@ public class ContentService : MongoContext<Content>, IContentService
             .Set(x => x.Files, updateContentDto.Files is null ? null : updateContentDto.Files.Trim().Split(","))
             .Set(x => x.Links, updateContentDto.Links is null ? null : updateContentDto.Links.Trim().Split(","));
 
-        await Collection.UpdateOneAsync(filter:filterDefinition, update:updateDefinition, cancellationToken: cancellationToken);
+        await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
 
     }
 
