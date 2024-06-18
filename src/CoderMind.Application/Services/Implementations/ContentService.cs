@@ -24,7 +24,7 @@ public class ContentService : MongoContext<Content>, IContentService
     public async Task<GetContentDto> GetContentAsync(string id, CancellationToken cancellationToken = default)
     {
         var content = await Collection.Find(x => x.Id == id).SingleOrDefaultAsync(cancellationToken);
-        return new GetContentDto(content.Id, content.SubjectId, content.Text, content.Files, content.Links);
+        return new GetContentDto(content.Id,content.SubjectId,content.SubjectId, content.Text, content.Files, content.Links);
     }
 
     public async Task<GetContentDto> GetSubjectContentBySubjectIdAsync(string subjectId, CancellationToken cancellationToken = default)
@@ -35,7 +35,7 @@ public class ContentService : MongoContext<Content>, IContentService
 
         if (content is null) return null;
 
-        return new GetContentDto(content.Id, subject.Title, content.Text, content.Files, content.Links);
+        return new GetContentDto(content.Id,content.SubjectId, subject.Title, content.Text, content.Files, content.Links);
     }
 
     public async Task UpdateContentAsync(UpdateContentDto updateContentDto, CancellationToken cancellationToken = default)

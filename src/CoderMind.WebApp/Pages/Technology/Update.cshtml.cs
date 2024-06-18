@@ -20,6 +20,7 @@ public class UpdateModel(ITechnologyService technologyService) : PageModel
             Logo = technology.Logo,
             Description = technology.Description
         };
+        ViewData["TechnologyName"] = technology.Name;
     }
 
     public async Task<IActionResult> OnPost()

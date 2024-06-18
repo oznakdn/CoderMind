@@ -31,4 +31,13 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
             .SingleOrDefaultAsync(cancellationToken);
         return new GetSubjectDto(subject.Id, subject.Title, subject.Tags, subject.CreatedDate.ToString());
     }
+
+    public async Task UpdateSubjectAsync(UpdateSubjectDto updateSubject, CancellationToken cancellationToken = default)
+    {
+        var filterDefinition = new FilterDefinitionBuilder<Subject>().Eq(x => x.Id, updateSubject.Id);
+        var updateDefinition = new UpdateDefinitionBuilder<Subject>()
+            .Set(x => x.Title, updateSubject.Title)
+            .Set(x => x.Tags, updateSubject.Tags!.Trim().Split(','));
+        await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
+    }
 }
