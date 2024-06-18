@@ -1,0 +1,26 @@
+﻿@page "/subject/create"
+@model CoderMind.WebApp.Pages.Subject.CreateModel
+<!--New Subject-->
+<div class="row d-flex mt-3">
+    <div class="col-8 offset-2">
+        <div class="card">
+            <div class="card-header text-center">Add @ViewData["TechnologyName"] Subject</div>
+            <div class="card-body">
+                <form method="post" asp-page-handler="CreateSubject">
+                    <input type="hidden" asp-for="CreateSubject.TechnologyId" />
+                    <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm text-primary">Title</label>
+                        <input class="form-control form-control-sm" asp-for="CreateSubject.Title" />
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="form-label col-form-label-sm text-primary">Tags</label>
+                        <input class="form-control form-control-sm" placeholder="Tag1, Tag2, Tag3" asp-for="CreateSubject.Tags" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
