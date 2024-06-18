@@ -11,7 +11,7 @@
         <div id="collapseOne-@item.TechnologyId" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="btn-group mt-2 mx-2">
                 <a asp-page="/Note/Subject" asp-route-technologyId="@item.TechnologyId" class="btn btn-primary btn-sm"><i class='bx bx-add-to-queue'></i></a>
-                <a asp-page="/Note/TechnologyDetail" asp-route-technologyId="@item.TechnologyId" class="btn btn-success btn-sm"><i class='bx bx-detail'></i></a>
+                <a asp-page="/Technology/Detail" asp-route-technologyId="@item.TechnologyId" class="btn btn-success btn-sm"><i class='bx bx-detail'></i></a>
                 <a asp-page="/Technology/Update" asp-route-technologyId="@item.TechnologyId" class="btn btn-warning btn-sm"><i class='bx bx-edit-alt'></i></a>
 
             </div>
