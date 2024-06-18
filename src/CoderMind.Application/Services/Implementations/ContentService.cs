@@ -1,5 +1,4 @@
-﻿using Amazon.Runtime.Internal.Auth;
-using CoderMind.Application.Services.Interfaces;
+﻿using CoderMind.Application.Services.Interfaces;
 using CoderMind.Domain.Models;
 using CoderMind.Persistence.Database;
 using CoderMind.Shared.Dtos.ContentDtos;
@@ -50,4 +49,5 @@ public class ContentService : MongoContext<Content>, IContentService
         await Collection.UpdateOneAsync(filter:filterDefinition, update:updateDefinition, cancellationToken: cancellationToken);
 
     }
+
 }

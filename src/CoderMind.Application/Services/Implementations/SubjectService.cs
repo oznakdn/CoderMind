@@ -40,4 +40,5 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
             .Set(x => x.Tags, updateSubject.Tags!.Trim().Split(','));
         await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
     }
+
 }

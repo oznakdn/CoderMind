@@ -75,4 +75,5 @@ public class TechnologyService : MongoContext<Technology>, ITechnologyService
        await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
 
     }
+
 }
