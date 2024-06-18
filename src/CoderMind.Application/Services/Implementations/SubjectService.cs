@@ -23,4 +23,12 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
         var filter =new FilterDefinitionBuilder<Subject>().Eq(x => x.Id, id);
         await Collection.FindOneAndDeleteAsync(filter, cancellationToken: cancellationToken);
     }
+
+    public async Task<GetSubjectDto> GetSubjectAsync(string id, CancellationToken cancellationToken = default)
+    {
+        var subject = await Collection
+            .Find(x => x.Id == id)
+            .SingleOrDefaultAsync(cancellationToken);
+        return new GetSubjectDto(subject.Id, subject.Title, subject.Tags, subject.CreatedDate.ToString());
+    }
 }

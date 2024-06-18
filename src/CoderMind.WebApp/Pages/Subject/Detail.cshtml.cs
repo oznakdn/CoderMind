@@ -19,6 +19,8 @@ public class DetailModel(IContentService contentService, ISubjectService subject
     public async Task OnGetAsync(string id)
     {
         CreateContent.SubjectId = id;
+        var subject = await subjectService.GetSubjectAsync(id);
+        ViewData["SubjectTitle"] = subject.Title;
         SubjectId = id;
         Content = await contentService.GetSubjectContentBySubjectIdAsync(id);
     }
