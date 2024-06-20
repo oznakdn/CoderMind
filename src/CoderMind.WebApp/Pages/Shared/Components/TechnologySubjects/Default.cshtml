@@ -23,7 +23,8 @@
 
                     @if (item.Subjects[i].Tags is not null)
                     {
-                        @foreach (var tag in @item.Subjects[i].Tags!)
+                        var tags = @item.Subjects[i].Tags!.Trim().Split(",");
+                        foreach (var tag in tags)
                         {
                             <span class="badge bg-primary">@tag</span>
                         }

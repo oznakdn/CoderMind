@@ -14,7 +14,7 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
 
     public async Task CreateSubjectAsync(CreateSubjectDto createSubject, CancellationToken cancellationToken = default)
     {
-        var subject = Subject.CreateSubject(createSubject.TechnologyId, createSubject.Title, createSubject.Tags is null ? null : createSubject.Tags!.Trim().Split(','));
+        var subject = Subject.CreateMongoSubject(createSubject.TechnologyId, createSubject.Title, createSubject.Tags);
         await Collection.InsertOneAsync(subject, cancellationToken: cancellationToken);
     }
 
@@ -37,7 +37,7 @@ public class SubjectService : MongoContext<Subject>, ISubjectService
         var filterDefinition = new FilterDefinitionBuilder<Subject>().Eq(x => x.Id, updateSubject.Id);
         var updateDefinition = new UpdateDefinitionBuilder<Subject>()
             .Set(x => x.Title, updateSubject.Title)
-            .Set(x => x.Tags, updateSubject.Tags is null ? null : updateSubject.Tags!.Trim().Split(','));
+            .Set(x => x.Tags, updateSubject.Tags);
         await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
     }
 

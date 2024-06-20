@@ -33,10 +33,15 @@
                 @if (Model.Content.Files is not null)
                 {
                     <div class="mt-2 list-img row d-flex">
-                        @foreach (var item in Model.Content.Files!)
-                        {
-                            <img src="@item" class="img-fluid d-block w-25" />
+                        @{
+                            var files = Model.Content.Files.Trim().Split(",");
+
+                            foreach (var item in files)
+                            {
+                                <img src="@item" class="img-fluid d-block w-25" />
+                            }
                         }
+
                     </div>
                 }
 
@@ -45,10 +50,15 @@
                 @if (Model.Content.Links is not null)
                 {
                     <div class="list-group">
-                        @for (int i = 0; i < Model.Content.Links.Length; i++)
-                        {
-                            <a href="@Model.Content.Links[i]" target="_blank" class="list-group-item list-group-item-action">Link @(i+1)</a>
+                        @{
+                            var links = Model.Content.Links.Trim().Split(",");
+
+                            for (int i = 0; i < links.Length; i++)
+                            {
+                                <a href="@links[i]" target="_blank" class="list-group-item list-group-item-action">Link @(i+1)</a>
+                            }
                         }
+
                     </div>
                 }
 

@@ -16,7 +16,7 @@ public class TechnologyService : MongoContext<Technology>, ITechnologyService
 
     public async Task CreateTechnologyAsync(CreateTechnologyDto createTechnologyDto, CancellationToken cancellationToken = default)
     {
-        var technology = Technology.CreateTechnology(createTechnologyDto.Name, createTechnologyDto.Logo, createTechnologyDto.Description);
+        var technology = Technology.CreateMongoTechnology(createTechnologyDto.Name, createTechnologyDto.Logo, createTechnologyDto.Description);
         await Collection.InsertOneAsync(technology, cancellationToken: cancellationToken);
     }
 

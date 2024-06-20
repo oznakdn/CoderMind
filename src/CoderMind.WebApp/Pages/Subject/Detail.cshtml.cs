@@ -1,3 +1,4 @@
+using CoderMind.Application.Services.EFCoreServices.Interfaces;
 using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.ContentDtos;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Subject;
 
-public class DetailModel(IContentService contentService, ISubjectService subjectService) : PageModel
+public class DetailModel(IEfContentService contentService, IEfSubjectService subjectService) : PageModel
 {
     [BindProperty]
     public GetContentDto? Content { get; set; }

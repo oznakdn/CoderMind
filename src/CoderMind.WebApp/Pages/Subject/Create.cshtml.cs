@@ -1,3 +1,4 @@
+using CoderMind.Application.Services.EFCoreServices.Interfaces;
 using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.SubjectDtos;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Subject;
 
-public class CreateModel(ISubjectService subjectService, ITechnologyService technologyService) : PageModel
+public class CreateModel(IEfSubjectService subjectService, IEfTechnologyService technologyService) : PageModel
 {
     [BindProperty]
     public CreateSubjectDto CreateSubject { get; set; } = new();

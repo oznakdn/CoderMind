@@ -16,11 +16,11 @@ public class ContentService : MongoContext<Content>, IContentService
 
     public async Task CreateContentAsync(CreateContentDto createContentDto, CancellationToken cancellationToken = default)
     {
-        var content = Content.CreateContent(
+        var content = Content.CreateMongoContent(
             createContentDto.SubjectId,
             createContentDto.Text,
-            createContentDto.Files is null ? null : createContentDto.Files?.Trim().Split(','),
-            createContentDto.Links is null ? null : createContentDto.Links?.Trim().Split(','));
+            createContentDto.Files,
+            createContentDto.Links);
 
         await Collection.InsertOneAsync(content, cancellationToken: cancellationToken);
     }
@@ -48,8 +48,8 @@ public class ContentService : MongoContext<Content>, IContentService
 
         var updateDefinition = new UpdateDefinitionBuilder<Content>()
             .Set(x => x.Text, updateContentDto.Text)
-            .Set(x => x.Files, updateContentDto.Files is null ? null : updateContentDto.Files.Trim().Split(","))
-            .Set(x => x.Links, updateContentDto.Links is null ? null : updateContentDto.Links.Trim().Split(","));
+            .Set(x => x.Files, updateContentDto.Files)
+            .Set(x => x.Links, updateContentDto.Links);
 
         await Collection.UpdateOneAsync(filter: filterDefinition, update: updateDefinition, cancellationToken: cancellationToken);
 
