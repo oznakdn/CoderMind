@@ -1,12 +1,12 @@
+using AspNetCoreHero.ToastNotification.Abstractions;
 using CoderMind.Application.Services.EFCoreServices.Interfaces;
-using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.ContentDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Subject;
 
-public class DetailModel(IEfContentService contentService, IEfSubjectService subjectService) : PageModel
+public class DetailModel(IEfContentService contentService, IEfSubjectService subjectService,INotyfService notyfService) : PageModel
 {
     [BindProperty]
     public GetContentDto? Content { get; set; }
@@ -28,13 +28,21 @@ public class DetailModel(IEfContentService contentService, IEfSubjectService sub
 
     public async Task<IActionResult> OnPostCreateContent()
     {
+        if (string.IsNullOrWhiteSpace(CreateContent.Text))
+        {
+            notyfService.Warning("Content text is required!");
+            return Page();
+        }
+
         await contentService.CreateContentAsync(CreateContent);
+        notyfService.Success("Content created successfully!");
         return RedirectToPage("/Index");
     }
 
     public async Task<IActionResult> OnPostDeleteSubject(string subjectId)
     {
         await subjectService.DeleteSubjectAsync(subjectId);
+        notyfService.Success("Subject deleted successfully!");
         return RedirectToPage("/Index");
     }
 }

@@ -7,10 +7,12 @@
             <div class="card-header text-center">Add @ViewData["TechnologyName"] Subject</div>
             <div class="card-body">
                 <form method="post" asp-page-handler="CreateSubject">
+                    <div asp-validation-summary="ModelOnly"></div>
                     <input type="hidden" asp-for="CreateSubject.TechnologyId" />
                     <div class="form-group mt-2">
                         <label class="form-label col-form-label-sm text-primary">Title</label>
                         <input class="form-control form-control-sm" asp-for="CreateSubject.Title" />
+                        <span class="text-danger" asp-validation-for="CreateSubject.Title"></span>
                     </div>
                     <div class="form-group mt-2">
                         <label class="form-label col-form-label-sm text-primary">Tags</label>

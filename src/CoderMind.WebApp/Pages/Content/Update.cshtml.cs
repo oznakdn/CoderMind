@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification.Abstractions;
 using CoderMind.Application.Services.EFCoreServices.Interfaces;
 using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.ContentDtos;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Content;
 
-public class UpdateModel(IEfContentService contentService, IEfSubjectService subjectService) : PageModel
+public class UpdateModel(IEfContentService contentService, IEfSubjectService subjectService, INotyfService notyfService) : PageModel
 {
     [BindProperty]
     public UpdateContentDto UpdateContent { get; set; }
@@ -30,7 +31,14 @@ public class UpdateModel(IEfContentService contentService, IEfSubjectService sub
 
     public async Task<IActionResult>OnPost()
     {
+        if(string.IsNullOrWhiteSpace(UpdateContent.Text))
+        {
+            notyfService.Error("Text is required");
+            return Page();
+        }
+
         await contentService.UpdateContentAsync(UpdateContent);
+        notyfService.Success("Content updated successfully");
         return RedirectToPage("/Index");
     }
 }

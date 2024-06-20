@@ -1,4 +1,6 @@
-﻿namespace CoderMind.Shared.Dtos.TechnologyDtos;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record CreateTechnologyDto(string Name, string Logo, string Description);
+namespace CoderMind.Shared.Dtos.TechnologyDtos;
+
+public record CreateTechnologyDto([Required]string Name, string Logo, string Description);
 

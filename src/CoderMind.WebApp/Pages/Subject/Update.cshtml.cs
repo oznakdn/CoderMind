@@ -1,3 +1,4 @@
+using AspNetCoreHero.ToastNotification.Abstractions;
 using CoderMind.Application.Services.EFCoreServices.Interfaces;
 using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.SubjectDtos;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Subject;
 
-public class UpdateModel(IEfSubjectService subjectService) : PageModel
+public class UpdateModel(IEfSubjectService subjectService, INotyfService notyfService) : PageModel
 {
 
     [BindProperty]
@@ -27,7 +28,11 @@ public class UpdateModel(IEfSubjectService subjectService) : PageModel
 
     public async Task<IActionResult>OnPost()
     {
+        if(!ModelState.IsValid)
+            return Page();
+
         await subjectService.UpdateSubjectAsync(UpdateSubject);
+        notyfService.Success("Subject updated successfully");
         return RedirectToPage("/Index");
     }
 

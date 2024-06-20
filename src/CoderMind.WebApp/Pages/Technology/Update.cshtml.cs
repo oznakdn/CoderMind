@@ -1,12 +1,12 @@
+using AspNetCoreHero.ToastNotification.Abstractions;
 using CoderMind.Application.Services.EFCoreServices.Interfaces;
-using CoderMind.Application.Services.Interfaces;
 using CoderMind.Shared.Dtos.TechnologyDtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CoderMind.WebApp.Pages.Technology;
 
-public class UpdateModel(IEfTechnologyService technologyService) : PageModel
+public class UpdateModel(IEfTechnologyService technologyService,INotyfService notyfService) : PageModel
 {
     [BindProperty]
     public UpdateTechnologyDto UpdateTechnology { get; set; }
@@ -26,11 +26,14 @@ public class UpdateModel(IEfTechnologyService technologyService) : PageModel
 
     public async Task<IActionResult> OnPost()
     {
-        if (ModelState.IsValid)
+
+        if (!ModelState.IsValid)
         {
-            await technologyService.UpdateTechnologyAsync(UpdateTechnology);
-            return RedirectToPage("/Index");
+            return Page();
         }
-        return Page();
+
+        await technologyService.UpdateTechnologyAsync(UpdateTechnology);
+        notyfService.Success("Technology updated successfully");
+        return RedirectToPage("/Index");
     }
 }

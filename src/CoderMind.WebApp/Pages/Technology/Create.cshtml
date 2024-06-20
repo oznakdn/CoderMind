@@ -7,9 +7,11 @@
             <div class="card-header text-center">Add Technology</div>
             <div class="card-body">
                 <form method="post" asp-page-handler="CreateTechnology">
+                    <div asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
                         <label class="form-label col-form-label-sm text-primary">Name</label>
                         <input class="form-control form-control-sm" asp-for="CreateTechnology.Name" />
+                        <span class="text-danger" asp-validation-for="CreateTechnology.Name"></span>
                     </div>
                     <div class="form-group mt-2">
                         <label class="form-label col-form-label-sm text-primary">Logo</label>

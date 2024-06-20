@@ -7,10 +7,12 @@
             <div class="card-header text-center">Updating - @ViewData["SubjectTitle"]</div>
             <div class="card-body">
                 <form method="post" asp-page-handler="CreateSubject">
+                    <div asp-validation-summary="ModelOnly"></div>
                     <input type="hidden" asp-for="UpdateSubject.Id" />
                     <div class="form-group mt-2">
                         <label class="form-label col-form-label-sm text-primary">Title</label>
                         <input class="form-control form-control-sm" asp-for="UpdateSubject.Title" />
+                        <span class="text-danger" asp-validation-for="UpdateSubject.Title"></span>
                     </div>
                     <div class="form-group mt-2">
                         <label class="form-label col-form-label-sm text-primary">Tags</label>
