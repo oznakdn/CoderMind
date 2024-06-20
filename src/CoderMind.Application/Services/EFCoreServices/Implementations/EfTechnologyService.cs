@@ -50,30 +50,23 @@ public class EfTechnologyService : IEfTechnologyService
         var technologies = await context.Technologies
             .ToListAsync(cancellationToken);
 
-        var subjects = new List<Subject>();
-        foreach (var item in technologies)
-        {
-            var subject = await context.Subjects
-                .Where(x => x.TechnologyId == item.Id)
-                .SingleOrDefaultAsync(cancellationToken);
+        var result = new List<GetTechnologySubjectsDto>();
+        var subjectsDto = new List<GetSubjectDto>();
 
-            if (subject is not null)
-                subjects.Add(subject);
+        foreach (var technology in technologies)
+        {
+            var subjects = await context.Subjects
+                .Where(x => x.TechnologyId == technology.Id)
+                .ToListAsync(cancellationToken);
+
+            subjectsDto = subjects
+                .Select(x => new Shared.Dtos.SubjectDtos.GetSubjectDto(x.Id, x.Title, x.Tags, x.CreatedDate.ToString()))
+                .ToList();
+
+            result.Add(new GetTechnologySubjectsDto(technology.Id, technology.Name, technology.Logo, technology.Description, subjectsDto));
         }
 
-        var getSubjectDto = subjects.Select(x => new GetSubjectDto(x.Id, x.Title, x.Tags, x.CreatedDate.ToString())).ToList();
-
-
-        return technologies
-            .Select(x => new GetTechnologySubjectsDto(
-                x.Id,
-                x.Name,
-                x.Logo,
-                x.Description,
-                getSubjectDto));
-
-
-
+        return result;
     }
 
 

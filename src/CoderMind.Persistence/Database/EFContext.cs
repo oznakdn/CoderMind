@@ -1,9 +1,10 @@
 ﻿using CoderMind.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoderMind.Persistence.Database;
 
-public class EFContext : DbContext
+public class EFContext : IdentityDbContext
 {
     public EFContext(DbContextOptions<EFContext> options) : base(options)
     {
@@ -17,9 +18,12 @@ public class EFContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Technology>()
             .HasMany<Subject>()
             .WithOne(x=>x.Technology)
             .HasForeignKey(x=>x.TechnologyId);
+
     }
 }

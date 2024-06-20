@@ -5,7 +5,7 @@
 @if (Model.Content is not null)
 {
     <div class="row d-flex mt-3">
-        <div class="col-8 offset-2">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header text-center">
                     @Model.Content.SubjectTitle
@@ -70,7 +70,7 @@
 else
 {
 <div class="row d-flex mt-3">
-    <div class="col-8 offset-2">
+    <div class="col-12">
         <div class="card">
             <div class="card-header text-center">@ViewData["SubjectTitle"]</div>
             <div class="card-body">
@@ -107,7 +107,7 @@ else
 
             tinymce.init({
                 selector: 'textarea#text',
-                width: 850,
+                width: 1370,
                 height: 500,
                 plugins: [
                     'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview',

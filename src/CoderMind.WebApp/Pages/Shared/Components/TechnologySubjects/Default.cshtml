@@ -6,7 +6,7 @@
         <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-@item.TechnologyId" aria-expanded="true" aria-controls="collapseOne">
                 <div class="header_img w-25"> <img src="@item.Logo" class="img-fluid rounded rounded-circle"></div>
-                <span>@item.Name</span>
+                <span class="text-center display-6 mx-5">@item.Name</span>
             </button>
         </h2>
         <div id="collapseOne-@item.TechnologyId" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -19,14 +19,14 @@
             <div class="accordion-body">
                 @for (var i = 0; i < item.Subjects.Count; i++)
                 {
-                    <a asp-page="/Subject/Detail" asp-route-id="@item.Subjects[i].SubjectId" class="link-primary">@(i+1) - @(item.Subjects[i].Title)</a><br />
+                    <a asp-page="/Subject/Detail" asp-route-id="@item.Subjects[i].SubjectId" class="link-primary text-decoration-none" style="font-size:larger">@(i+1) - @(item.Subjects[i].Title)</a><br />
 
                     @if (item.Subjects[i].Tags is not null)
                     {
                         var tags = @item.Subjects[i].Tags!.Trim().Split(",");
                         foreach (var tag in tags)
                         {
-                            <span class="badge bg-primary">@tag</span>
+                            <span class="badge bg-primary mt-2">@tag</span>
                         }
                     }
 

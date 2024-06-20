@@ -1,4 +1,5 @@
 ﻿using CoderMind.Persistence.Database;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,5 +23,6 @@ public static class DependencyInjections
     public static void AddEFCorePersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<EFContext>(opt => opt.UseSqlServer(configuration.GetConnectionString(sqlServerConnection)));
+        services.AddIdentityCore<IdentityUser>().AddEntityFrameworkStores<EFContext>();
     }
 }
