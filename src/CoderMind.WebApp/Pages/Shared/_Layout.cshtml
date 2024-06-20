@@ -20,7 +20,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
                 <div class="d-flex">
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity!.IsAuthenticated)
                     {
                         <a class="btn btn-danger mx-1" asp-page="/account/logout">Logout</a>
                     }
@@ -37,15 +37,21 @@
     <div class="container-fluid">
         <div class="row d-flex">
             <div class="col-4">
-                <a asp-page="/Technology/Create" class="btn btn-primary btn-sm btn-block mt-2"><i class='bx bxs-add-to-queue'></i> Technology</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-page="/Technology/Create" class="btn btn-primary btn-sm btn-block mt-2"><i class='bx bxs-add-to-queue'></i> Technology</a>
+                }
             </div>
         </div>
         <div class="row d-flex">
-            <div class="col-3">
-                <div class="accordion mt-3" id="accordionExample">
-                    @(await Component.InvokeAsync("TechnologySubjects"))
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-3">
+                    <div class="accordion mt-3" id="accordionExample">
+                        @(await Component.InvokeAsync("TechnologySubjects"))
+                    </div>
                 </div>
-            </div>
+            }
             <div class="col-9">
                 @RenderBody()
             </div>
@@ -59,7 +65,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/tinymce/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="~/js/main.js" asp-append-version="true"></script>
-
+    @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

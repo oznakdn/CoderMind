@@ -1,5 +1,8 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using CoderMind.Application;
 using CoderMind.Persistence.Database;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,13 @@ builder.Services.AddRazorPages();
 //});
 
 builder.Services.AddApplicationEfService(builder.Configuration);
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<EFContext>().AddDefaultTokenProviders();
+builder.Services.AddNotyf(conf =>
+{
+    conf.DurationInSeconds = 3;
+    conf.IsDismissable = true;
+    conf.Position = NotyfPosition.TopRight;
+});
 
 var app = builder.Build();
 
@@ -25,8 +35,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.UseNotyf();
+
 
 app.Run();
